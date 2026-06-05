@@ -1,55 +1,60 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended",
-        ":configMigration",
-        ":pinDevDependencies",
-        "abandonments:recommended",
-        "security:minimumReleaseAgeNpm",
-        "mergeConfidence:all-badges"
-    ],
-    "osvVulnerabilityAlerts": true,
-    "minimumReleaseAge": "3 days",
-    "prConcurrentLimit": 0,
-    "semanticCommits": "enabled",
-    "pre-commit": { "enabled": true },
-    "addLabels": ["renovate"],
-    "packageRules": [
-        {
-            "matchUpdateTypes": ["patch"],
-            "addLabels": ["dependencies", "patch"]
-        },
-        {
-            "matchUpdateTypes": ["minor"],
-            "addLabels": ["dependencies", "minor"]
-        },
-        {
-            "matchUpdateTypes": ["major"],
-            "addLabels": ["dependencies", "major"]
-        }
-    ],
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended",
+		":configMigration",
+		":pinDevDependencies",
+		"abandonments:recommended",
+		"security:minimumReleaseAgeNpm",
+		"mergeConfidence:all-badges"
+	],
+	"osvVulnerabilityAlerts": true,
+	"minimumReleaseAge": "3 days",
+	"prConcurrentLimit": 0,
+	"semanticCommits": "enabled",
+	"pre-commit": { "enabled": true },
+	"addLabels": ["renovate"],
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["patch"],
+			"addLabels": ["dependencies", "patch"]
+		},
+		{
+			"matchUpdateTypes": ["minor"],
+			"addLabels": ["dependencies", "minor"]
+		},
+		{
+			"matchUpdateTypes": ["major"],
+			"addLabels": ["dependencies", "major"]
+		},
+		{
+			"automerge": true,
+			"matchCurrentVersion": "!/^0/",
+			"matchUpdateTypes": ["minor", "patch"]
+		}
+	],
 
-    "customManagers": [
-        {
-            "customType": "regex",
-            "managerFilePatterns": ["/biome\\.json$/"],
-            "matchStrings": [
-                "\"\\$schema\":\\s*\"https://biomejs\\.dev/schemas/(?<currentValue>[^/]+)/schema\\.json\""
-            ],
-            "depNameTemplate": "@biomejs/biome",
-            "datasourceTemplate": "npm",
-            // treat custom regex manager as dev dep to match automerge rule
-            "depTypeTemplate": "devDependencies"
-        },
-        {
-            "customType": "regex",
-            "managerFilePatterns": ["/^pyproject\\.toml$/"],
-            "matchStrings": ["target-version = \"py3(?<minor>\\d+)\""],
-            "currentValueTemplate": "3.{{{minor}}}",
-            "autoReplaceStringTemplate": "target-version = \"py3{{{replace '.' '' newValue}}}\"",
-            "depNameTemplate": "python",
-            "datasourceTemplate": "python-version",
-            "versioningTemplate": "python"
-        }
-    ]
+	"customManagers": [
+		{
+			"customType": "regex",
+			"managerFilePatterns": ["/biome\\.json$/"],
+			"matchStrings": [
+				"\"\\$schema\":\\s*\"https://biomejs\\.dev/schemas/(?<currentValue>[^/]+)/schema\\.json\""
+			],
+			"depNameTemplate": "@biomejs/biome",
+			"datasourceTemplate": "npm",
+			// treat custom regex manager as dev dep to match automerge rule
+			"depTypeTemplate": "devDependencies"
+		},
+		{
+			"customType": "regex",
+			"managerFilePatterns": ["/^pyproject\\.toml$/"],
+			"matchStrings": ["target-version = \"py3(?<minor>\\d+)\""],
+			"currentValueTemplate": "3.{{{minor}}}",
+			"autoReplaceStringTemplate": "target-version = \"py3{{{replace '.' '' newValue}}}\"",
+			"depNameTemplate": "python",
+			"datasourceTemplate": "python-version",
+			"versioningTemplate": "python"
+		}
+	]
 }
