@@ -6,7 +6,8 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"includes": ["**", "!biome.json"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -33,7 +34,7 @@
 	},
 	"overrides": [
 		{
-			"includes": ["*.json"],
+			"includes": ["*.json", "*.jsonc", "*.json5"],
 			"json": {
 				"parser": {
 					"allowComments": true,
