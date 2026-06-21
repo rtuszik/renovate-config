@@ -5,9 +5,9 @@
 		":configMigration",
 		":pinDevDependencies",
 		"abandonments:recommended",
-		"security:minimumReleaseAgeNpm",
 		"mergeConfidence:all-badges"
 	],
+	"dependencyDashboardOSVVulnerabilitySummary": "all",
 	"osvVulnerabilityAlerts": true,
 	"minimumReleaseAge": "3 days",
 	"prConcurrentLimit": 0,
