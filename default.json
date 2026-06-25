@@ -11,7 +11,7 @@
 	"osvVulnerabilityAlerts": true,
 	"minimumReleaseAge": "3 days",
 	"prConcurrentLimit": 0,
-	"prCreation": "not-pending",
+	"prCreation": "immediate",
 	"semanticCommits": "enabled",
 	"pre-commit": { "enabled": true },
 	"addLabels": ["renovate"],
