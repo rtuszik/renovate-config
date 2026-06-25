@@ -11,6 +11,7 @@
 	"osvVulnerabilityAlerts": true,
 	"minimumReleaseAge": "3 days",
 	"prConcurrentLimit": 0,
+	"prHourlyLimit": 0,
 	"prCreation": "immediate",
 	"semanticCommits": "enabled",
 	"pre-commit": { "enabled": true },
