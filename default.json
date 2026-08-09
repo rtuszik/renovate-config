@@ -9,6 +9,8 @@
 	],
 	"dependencyDashboardOSVVulnerabilitySummary": "all",
 	"osvVulnerabilityAlerts": true,
+	// baseline soak time; also covers update types other than
+	// major/minor/patch (pin, digest, bump, replacement, ...)
 	"minimumReleaseAge": "3 days",
 	"minimumReleaseAgeBehaviour": "timestamp-optional",
 	"prConcurrentLimit": 0,
@@ -18,17 +20,22 @@
 	"pre-commit": { "enabled": true },
 	"addLabels": ["renovate"],
 	"packageRules": [
+		// cascade soak time by blast radius: the bigger the change,
+		// the longer it sits before Renovate will propose it
 		{
 			"matchUpdateTypes": ["patch"],
-			"addLabels": ["dependencies", "patch"]
+			"addLabels": ["dependencies", "patch"],
+			"minimumReleaseAge": "1 day"
 		},
 		{
 			"matchUpdateTypes": ["minor"],
-			"addLabels": ["dependencies", "minor"]
+			"addLabels": ["dependencies", "minor"],
+			"minimumReleaseAge": "2 days"
 		},
 		{
 			"matchUpdateTypes": ["major"],
-			"addLabels": ["dependencies", "major"]
+			"addLabels": ["dependencies", "major"],
+			"minimumReleaseAge": "3 days"
 		},
 		{
 			"automerge": true,
